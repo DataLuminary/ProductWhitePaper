@@ -1,0 +1,14 @@
+## 图表类型说嘛
+- table`(表格)`
+- bar-chart`(柱状图)`
+- time-series`(时序图-折线图)`
+- title`(标题)`
+- digital-trends`(数据趋势图)`
+- pie-charts`(饼图)`
+- scatter-chart`(散点图)`
+- number-panel`(数字面板)`
+- gauge`(仪表盘)`
+- rich-text`(富文本)`
+- time-series-mixed`(柱线图)`
+- funnel`(漏斗图)`
+- word-cloudtable`(词云图)`
