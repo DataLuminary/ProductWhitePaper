@@ -6,11 +6,6 @@
   },
   {
     "type": "file",
-    "name": "core",
-    "label": "内核"
-  },
-  {
-    "type": "file",
     "name": "framework",
     "label": "架构概览"
   }
