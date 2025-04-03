@@ -20,12 +20,12 @@
 其中***data_type 图表插件所接受的数据类型***。分别为  'frame'|'row'|'column'|'point'，默认为point
 
 
-# bk-vision 支持数据类型三种接口
+# DataLuminary 支持数据类型三种接口
 + 标准数据集(二维表-行业通用标准) (dataSetType:'frame')
-+ 对象数据集（**bk-vision推荐使用**） dataSetType: 'row'|'column'
++ 对象数据集（**DataLuminary推荐使用**） dataSetType: 'row'|'column'
 + 时序数据集 (时序图专用)   dataSetType: 'point'
  
-具体参看： [数据源数据查询Query接口](docs/api/数据源数据查询Query接口.md)
+具体参看： [数据源数据查询Query接口](/api/Query.md)
 ## 标准数据集
 多数常见图表中，数据适于用二维表的形式描述。广为使用的数据表格软件（如 MS Excel、Numbers）或者关系数据数据库都是二维表。他们的数据可以导出成 JSON 格式，输入到 dataset.source 中，在不少情况下可以免去一些数据处理的步骤。
 > 假如数据导出成 csv 文件，那么可以使用一些 csv 工具如 dsv 或者 PapaParse 将 csv 转成 JSON。
@@ -152,7 +152,7 @@ key-value 展示的**数据更为直观**，能够清晰地展示数据结构
 }
 ```
 
-**bk-vision 采用 按行的 key-value 形式（对象数组）**
+**DataLuminary 采用 按行的 key-value 形式（对象数组）**
 ```javascript
 [
   {

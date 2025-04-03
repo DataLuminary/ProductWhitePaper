@@ -1,7 +1,44 @@
 [
   {
-    "text": "架构说明",
-    "link": "/overview/",
-    "activeMatch": "/overview/"
+    "text": "Plugins",
+    "activeMatch": "/plugins/",
+    "items": [
+      {
+        "text": "Concept",
+        "link": "/plugins/index"
+      },
+      {
+        "text": "Develop",
+        "link": "plugins/design"
+      }
+    ]
+  },
+  {
+    "text": "overview ",
+    "activeMatch": "/overview/",
+    "items": [
+      {
+        "text": "Design Concept",
+        "link": "/overview/index"
+      },
+      {
+        "text": "framework",
+        "link": "overview/framework"
+      }
+    ]
+  },
+  {
+    "text": "API",
+    "activeMatch": "/api/",
+    "items": [
+      {
+        "text": "Panel",
+        "link": "/api/Charts"
+      },
+      {
+        "text": "Query",
+        "link": "api/Query"
+      }
+    ]
   }
 ]
