@@ -1,15 +1,5 @@
 ## 核心概念及定义
 
-
-### 图表定义
-不同于 grafana、DataEase、DataTalk等平台：
-
-视图层（如图表）由 ChartPanel的信息直连Datasource。
-![image-20220123150301691](./images/image-20220123150301691.png)
-我们的配图插件仅负责渲染数据和属性配置，图表的数据均由数据集（数据湖）提供
-
-具体参看：[图表插件](../plugin/panel.md)
-
 ### 面板定义
 面板是一个视图（比如多个图表、富文本）的集合定义。
 
@@ -19,13 +9,13 @@
 >BookMark 功能本身也是通过 Dashboard 类型插件实现
 
 ![image-20220123145828665](./images/image-20220123145828665.png)
-
-dashboard 有面板插件生成，内置有：
+### 面板插件
+dashboard 由面板插件生成，内置有：
 + grid-panel（网格视图）,基于`react-gird-layout`，可以导入grafana面板
 + position-panel(位置视图)，基于`tmagic-editor`适合大屏场景
 + card-panel(卡片视图)，适合报表、邮件、看板等场景
 + list-panel(列表视图)，适合移动端场景
-
+具体参看：[面板插件](/plugin/dashboard.md)
 
 
 ### datasource 数据源插件
@@ -54,7 +44,15 @@ dashboard 有面板插件生成，内置有：
   * 数据的传导到图表展示也是通过平台来做中介
   * 每个panel都会在渲染实例化时 传入特定的方法和datasource实例来供panel内调用
 
+具体参看：[数据源插件](/plugin/datasource.md)
+### 图表定义
+不同于 grafana、DataEase、DataTalk等平台：
 
+视图层（如图表）由 ChartPanel的信息直连Datasource。
+![image-20220123150301691](./images/image-20220123150301691.png)
+我们的配图插件仅负责渲染数据和属性配置，图表的数据均由数据集（数据湖）提供
+
+具体参看：[图表插件](../plugin/panel.md)
 
 ### Panel 图表插件
 

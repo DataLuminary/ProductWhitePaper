@@ -36,6 +36,16 @@
     ]
   },
   {
+    "text": "Permission",
+    "activeMatch": "/permission/",
+    "items": [
+      {
+        "text": "Concept",
+        "link": "/permission/index"
+      }
+    ]
+  },
+  {
     "text": "Plugins",
     "activeMatch": "/plugins/",
     "items": [

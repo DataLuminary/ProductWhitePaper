@@ -9,7 +9,7 @@ hero:
   actions:
     - theme: brand
       text: Quick Start
-      link: /guide/
+      link: /plugins/
     - theme: alt
       text: GitHub
       link: https://github.com/DataLuminary
