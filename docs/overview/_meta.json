@@ -1,0 +1,12 @@
+[
+  {
+    "type": "file",
+    "name": "index",
+    "label": "架构概览"
+  },
+  {
+    "type": "framework_design",
+    "name": "index",
+    "label": "架构概览"
+  }
+]
