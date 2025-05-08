@@ -1,1 +1,31 @@
-["index"]
+[
+  {
+    "type": "file",
+    "name": "index",
+    "label": "核心概念及定义"
+  },
+  {
+    "type": "file",
+    "name": "design",
+    "label": "插件开发说明"
+  },
+  {
+    "type": "divider",
+    "dashed": true
+  },
+  {
+    "type": "file",
+    "name": "panel",
+    "label": "图表插件"
+  },
+  {
+    "type": "file",
+    "name": "dashboard",
+    "label": "面板插件"
+  },
+  {
+    "type": "file",
+    "name": "datasource",
+    "label": "数据源插件"
+  }
+]

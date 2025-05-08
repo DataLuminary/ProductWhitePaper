@@ -1,11 +1,11 @@
 ## 图表插件
-图表插件为bk-vision带来的不同类型的图表（如饼图、地图、富文本）展示。
+图表插件为DataLuminary带来的不同类型的图表（如饼图、地图、富文本）展示。
 
 **作用**：根据选择图表类型，会展示相应图表配置信息
 
-比如说 当你选择折线图时，会展示出 tootips，legend等线图相关的配置
+比如说 当你选择折线图时，会展示出 tooltips，legend等线图相关的配置
 
-bk-vision 作为数据可视化 图表配置平台，集成到bk-vision的图表插件必须包含
+DataLuminary 作为数据可视化 图表配置平台，集成到DataLuminary的图表插件必须包含
 + 图表配置面板组件 （PropsPanel）
 + 图表展示组件 （ChartPanel）
 
@@ -30,7 +30,7 @@ bk-vision 作为数据可视化 图表配置平台，集成到bk-vision的图表
 ```
 #### 图表数据说明
 
-bk-vision的图表数据结构如下：
+DataLuminary的图表数据结构如下：
 
 ```typescript
 export class PanelModel<
@@ -118,7 +118,7 @@ export class PanelModel<
 
 + 图表的配置数据（如echarts 配置项） 想数据 保存在  `chartConfig`，
 由 PropsPanel配置（实际就是 `chartConfig` 表单)
-+ 图表全局样式（如标题是否展示、边框设置等配置) 保存在 `chartStyle`，这个有bk-vision提供
++ 图表全局样式（如标题是否展示、边框设置等配置) 保存在 `chartStyle`，这个有DataLuminary提供
 
 ##### ChartPanel.tsx
 
@@ -140,7 +140,7 @@ const props = {
   },
 };
 ```
-bk-vision 平台传给图表插件 `数据源插件 query的的数据` (参考：  [图表接口说明](../api/Charts))
+DataLuminary 平台传给图表插件 `数据源插件 query的的数据` (参考：  [图表接口说明](../api/Charts))
 渲染出图表
 > 建议chartData 到图表渲染数据  封装在 hooks 里面，这样利于图表插件 适配不同的 图表库（如echarts、antV、D3等)
 
