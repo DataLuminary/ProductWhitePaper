@@ -1,8 +1,8 @@
 # query接口返回格式
-为了应对图表数据支持，首先参考：  [图表接口说明](docs/api/图表接口.md)
+为了应对图表数据支持，首先参考：  [图表接口说明](/api/Query.md)
 ### query支持三种接口
 + 标准数据集(二维表-行业通用标准) (dataSetType:'frame')
-+ 对象数据集（**bk-vision推荐使用**） dataSetType: 'row'|'column'
++ 对象数据集（**DataLuminary推荐使用**） dataSetType: 'row'|'column'
 + 时序数据集 (时序图专用)   dataSetType: 'point'
   
 下面以mysql数据源为例：
