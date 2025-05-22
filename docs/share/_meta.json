@@ -1,0 +1,22 @@
+[
+  {
+    "type": "file",
+    "name": "index",
+    "label": "数据消费"
+  },
+  {
+    "type": "file",
+    "name": "Compare",
+    "label": "竞品对吧"
+  },
+  {
+    "type": "file",
+    "name": "Grafana",
+    "label": "Grafana迁入"
+  },
+  {
+    "type": "file",
+    "name": "DataEase",
+    "label": "DataEase迁入"
+  }
+]

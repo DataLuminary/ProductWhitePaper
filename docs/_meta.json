@@ -1,5 +1,41 @@
 [
   {
+    "text": "Share ",
+    "activeMatch": "/share/",
+    "items": [
+      {
+        "text": "Share",
+        "link": "/share/index"
+      },
+      {
+        "text": "Compare",
+        "link": "share/compare"
+      },
+      {
+        "text": "Grafana",
+        "link": "share/grafana"
+      },
+      {
+        "text": "DataEase",
+        "link": "share/dataease"
+      }
+    ]
+  },
+  {
+    "text": "Overview ",
+    "activeMatch": "/overview/",
+    "items": [
+      {
+        "text": "Design Concept",
+        "link": "/overview/index"
+      },
+      {
+        "text": "framework",
+        "link": "overview/framework"
+      }
+    ]
+  },
+  {
     "text": "Plugins",
     "activeMatch": "/plugins/",
     "items": [
@@ -13,20 +49,7 @@
       }
     ]
   },
-  {
-    "text": "overview ",
-    "activeMatch": "/overview/",
-    "items": [
-      {
-        "text": "Design Concept",
-        "link": "/overview/index"
-      },
-      {
-        "text": "framework",
-        "link": "overview/framework"
-      }
-    ]
-  },
+
   {
     "text": "API",
     "activeMatch": "/api/",

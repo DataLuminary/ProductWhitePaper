@@ -1,4 +1,4 @@
-# 图表数据在哪里定义
+# 数据规范化
 图表数据在 图表插件里面定义
 
 以时序图为例，图表插件元数据文件：src/plugins/charts/time-series/plugin.json
