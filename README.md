@@ -1,11 +1,14 @@
-# Rspress website
+# ProductWhitePaper
+
+ProductWhitePaper is the RsPress site for DataLuminary user and developer
+documentation.
 
 ## Setup
 
 Install the dependencies:
 
 ```bash
-npm install
+pnpm install
 ```
 
 ## Get started
@@ -13,17 +16,17 @@ npm install
 Start the dev server:
 
 ```bash
-npm run dev
+pnpm run dev
 ```
 
 Build the website for production:
 
 ```bash
-npm run build
+pnpm run build
 ```
 
 Preview the production build locally:
 
 ```bash
-npm run preview
+pnpm run preview
 ```
