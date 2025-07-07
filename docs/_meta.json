@@ -1,99 +1,99 @@
 [
-	{
-		"text": "Share ",
-		"activeMatch": "/share/",
-		"items": [
-			{
-				"text": "Share",
-				"link": "/share/index"
-			},
-			{
-				"text": "Compare",
-				"link": "share/compare"
-			},
-			{
-				"text": "Grafana",
-				"link": "share/grafana"
-			},
-			{
-				"text": "DataEase",
-				"link": "share/dataease"
-			}
-		]
-	},
-	{
-		"text": "Overview ",
-		"activeMatch": "/overview/",
-		"items": [
-			{
-				"text": "Design Concept",
-				"link": "/overview/index"
-			},
-			{
-				"text": "framework",
-				"link": "overview/framework"
-			}
-		]
-	},
-	{
-		"text": "Permission",
-		"activeMatch": "/permission/",
-		"items": [
-			{
-				"text": "Concept",
-				"link": "/permission/index"
-			}
-		]
-	},
-	{
-		"text": "Plugins",
-		"activeMatch": "/plugins/",
-		"items": [
-			{
-				"text": "Concept",
-				"link": "/plugins/index"
-			},
-			{
-				"text": "Develop",
-				"link": "plugins/design"
-			}
-		]
-	},
+  {
+    "text": "Share ",
+    "activeMatch": "/share/",
+    "items": [
+      {
+        "text": "Share",
+        "link": "/share/index"
+      },
+      {
+        "text": "Compare",
+        "link": "share/compare"
+      },
+      {
+        "text": "Grafana",
+        "link": "share/grafana"
+      },
+      {
+        "text": "DataEase",
+        "link": "share/dataease"
+      }
+    ]
+  },
+  {
+    "text": "Overview ",
+    "activeMatch": "/overview/",
+    "items": [
+      {
+        "text": "Design Concept",
+        "link": "/overview/index"
+      },
+      {
+        "text": "framework",
+        "link": "overview/framework"
+      }
+    ]
+  },
+  {
+    "text": "Permission",
+    "activeMatch": "/permission/",
+    "items": [
+      {
+        "text": "Concept",
+        "link": "/permission/index"
+      }
+    ]
+  },
+  {
+    "text": "Plugins",
+    "activeMatch": "/plugins/",
+    "items": [
+      {
+        "text": "Concept",
+        "link": "/plugins/index"
+      },
+      {
+        "text": "Develop",
+        "link": "plugins/design"
+      }
+    ]
+  },
 
-	{
-		"text": "Product",
-		"activeMatch": "/product/",
-		"items": [
-			{
-				"text": "Overview",
-				"link": "/product/index"
-			},
-			{
-				"text": "Features",
-				"link": "product/features"
-			},
-			{
-				"text": "Upcoming",
-				"link": "product/upcoming"
-			},
-			{
-				"text": "Vision",
-				"link": "product/vision"
-			}
-		]
-	},
-	{
-		"text": "API",
-		"activeMatch": "/api/",
-		"items": [
-			{
-				"text": "Panel",
-				"link": "/api/Charts"
-			},
-			{
-				"text": "Query",
-				"link": "api/Query"
-			}
-		]
-	}
+  {
+    "text": "Product",
+    "activeMatch": "/product/",
+    "items": [
+      {
+        "text": "Overview",
+        "link": "/product/index"
+      },
+      {
+        "text": "Features",
+        "link": "product/features"
+      },
+      {
+        "text": "Upcoming",
+        "link": "product/upcoming"
+      },
+      {
+        "text": "Vision",
+        "link": "product/vision"
+      }
+    ]
+  },
+  {
+    "text": "API",
+    "activeMatch": "/api/",
+    "items": [
+      {
+        "text": "Panel",
+        "link": "/api/Charts"
+      },
+      {
+        "text": "Query",
+        "link": "api/Query"
+      }
+    ]
+  }
 ]

@@ -1,24 +1,24 @@
 {
-	"name": "ProductWhitePaper",
-	"version": "1.0.0",
-	"private": true,
-	"scripts": {
-		"build": "rspress build",
-		"check": "biome check --write",
-		"dev": "rspress dev --port 18082",
-		"format": "biome format --write",
-		"lint": "eslint .",
-		"preview": "rspress preview"
-	},
-	"dependencies": {
-		"rspress": "^1.40.2"
-	},
-	"devDependencies": {
-		"@biomejs/biome": "^2.4.16",
-		"@eslint/js": "^9.19.0",
-		"@types/node": "^18.11.17",
-		"eslint": "^9.19.0",
-		"globals": "^15.14.0",
-		"typescript-eslint": "^8.22.0"
-	}
+  "name": "ProductWhitePaper",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "rspress build",
+    "check": "biome check --write",
+    "dev": "rspress dev --port 18082",
+    "format": "biome format --write",
+    "lint": "eslint .",
+    "preview": "rspress preview"
+  },
+  "dependencies": {
+    "rspress": "^1.40.2"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.4.16",
+    "@eslint/js": "^9.19.0",
+    "@types/node": "^18.11.17",
+    "eslint": "^9.19.0",
+    "globals": "^15.14.0",
+    "typescript-eslint": "^8.22.0"
+  }
 }
