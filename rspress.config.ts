@@ -4,10 +4,10 @@ import { defineConfig } from "rspress/config";
 export default defineConfig({
   root: path.join(__dirname, "docs"),
   title: "DataLuminary",
-  icon: "/favicon.svg",
+  icon: "/brand-logo.png",
   logo: {
-    light: "/favicon.svg",
-    dark: "/favicon.svg",
+    light: "/brand-logo.png",
+    dark: "/brand-logo.png",
   },
   themeConfig: {
     socialLinks: [
