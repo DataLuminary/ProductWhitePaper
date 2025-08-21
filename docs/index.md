@@ -3,45 +3,44 @@ pageType: home
 
 hero:
   name: DataLuminary
-  text: Illuminate insights for all
-  tagline: Making data accessible, actionable, and transparent. 
-  # Let’s make data talk clearly to everyone.
+  text: AI-Native BI for every team
+  tagline: 全链路 BI 数据洞察平台，支持拖拽分析、AI 分步骤打磨与一句话生成。
   actions:
     - theme: brand
-      text: Quick Start
-      link: /product/
+      text: 战略白皮书
+      link: /product/whitepaper
     - theme: alt
-      text: GitHub
-      link: https://github.com/DataLuminary
+      text: 产品概览
+      link: /product/
   image:
     src: /index-model.png
     alt: DataLuminary
 
 features:
 
+  - title: 全链路 BI 数据洞察
+    details: 覆盖数据源接入、数据集建模、指标治理、图表生成、仪表盘编排、权限协作与洞察报告，让数据从接入到决策形成闭环。
+    icon: 📊
+    
+  - title: 三种分析方式
+    details: 业务用户可以拖拽完成，分析师可以与 AI 分步骤打磨，管理者可以用一句话生成可编辑、可审计的分析草案。
+    icon: 🧭
+    
   - title: 插件化架构
-    details: 平台一切皆插件：charts、dashboards、datasource、widgets等皆插件，可按需扩展。比如图表，可以自由切换图表类型，比如表格、折线图、柱状图、饼图、雷达图等。面板可以切换为大屏、网格、列表等。数据源可以切换为本地、远程、API等。
-    icon: 📦
-    
-  - title: 函数化、组件化
-    details: 所以核心代码皆为函数，提供原子粒度的代码复用。同时，我们提供了组件化的开发方式，让用户可以自由组合组件，实现自己的需求。
-    icon: 🛠️
-    
-  - title: LessCode
-    details: 用户可以自由拖拽配置 Metric、DataSet、Chart、Dashboard，无需编写代码。但是，我们再数据集提供了高级配置模式，如SQL Query查询，方便用户清洗数据。
+    details: 数据源、图表、面板、交互和 AI 能力皆可插件化扩展，方便社区开发行业模板、专用图表、业务连接器和拖拽组件。
     icon: 🎨
     
-  - title: Headless BI
-    details: 我们通过DataSource Plugins接入各类平台数据，通过DataSet模块清晰数据，配置指标、维度，通过Chart模块配置图表，最后通过Dashboard模块组合展示。
-    icon: 📊
+  - title: 全栈 TypeScript
+    details: 前端、后端、插件 SDK、配置 Schema 与契约统一使用 TypeScript，面向 TS 6.0 / 7.0 时代的 AI 协作开发体验。
+    icon: 🛠️
 
-  - title: 多端支持
-    details: 我们不止支持多语言，而且支持多端。我们支持Web、Mobile、Desktop、Serverless等多端。我们的多端支持基于插件，比如面板插件，有基于TMagic的大屏插件，有基于Layout的PC端插件，也有CardList的移动端！
-    icon: 🌐    
+  - title: 私有化部署
+    details: 面向企业数据安全、网络隔离和业务差异设计，可从轻量试点扩展到部门级、企业级数据规模。
+    icon: 🔒    
 
-  - title: DataLuminary Schema
-    details: 我们配置都是基于JSON Schema，不局限于插件配置、图表配置、面板配置。我们的图表联动也基于配置。基于我们的开放式Scheme，可以顺利与第三方平台对接，比如Grafana。
-    icon: 📝
+  - title: LuminaryWorks 生态协同
+    details: 与 IoT、远程运维、教育、Agent 等社区松耦合协作，让各产品独立成长，同时共享数据洞察能力。
+    icon: 🌐
     
 
 ---

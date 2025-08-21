@@ -69,16 +69,24 @@
         "link": "/product/index"
       },
       {
-        "text": "Features",
-        "link": "product/features"
+        "text": "Whitepaper",
+        "link": "product/whitepaper"
       },
       {
-        "text": "Upcoming",
-        "link": "product/upcoming"
+        "text": "Product Shape",
+        "link": "product/shape"
+      },
+      {
+        "text": "Capabilities",
+        "link": "product/features"
       },
       {
         "text": "Vision",
         "link": "product/vision"
+      },
+      {
+        "text": "Ecosystem",
+        "link": "product/ecosystem"
       }
     ]
   },
