@@ -61,6 +61,16 @@
   },
 
   {
+    "text": "Develop ",
+    "activeMatch": "/develop/",
+    "items": [
+      {
+        "text": "Dashboard position layout",
+        "link": "/develop/dashboard-position-layout"
+      }
+    ]
+  },
+  {
     "text": "Product",
     "activeMatch": "/product/",
     "items": [
@@ -79,6 +89,10 @@
       {
         "text": "Capabilities",
         "link": "product/features"
+      },
+      {
+        "text": "Position layout (fixed canvas)",
+        "link": "product/position-layout-fixed-canvas"
       },
       {
         "text": "Vision",

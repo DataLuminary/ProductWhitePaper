@@ -21,6 +21,11 @@
   },
   {
     "type": "file",
+    "name": "position-layout-fixed-canvas",
+    "label": "自由布局大屏固定尺寸"
+  },
+  {
+    "type": "file",
     "name": "vision",
     "label": "产品愿景"
   },
