@@ -28,6 +28,7 @@ DataLuminary 是面向 AI 时代的开源 BI 数据洞察平台。它把数据�
 - 想了解产品边界（含无障碍范围）：阅读 [无障碍范围说明](./accessibility-scope.md)。
 - 想了解自由布局大屏为何固定尺寸：阅读 [自由布局大屏固定尺寸](./position-layout-fixed-canvas.md)（Develop：[设计与实现](../develop/dashboard-position-layout.md)）。
 - 想了解仪表盘交互（筛选 / 联动 / 下钻）架构：阅读 [完整产品能力 · 交互引擎](./features.md)（Develop：[设计与实现](../develop/dashboard-interact-engine.md)）。
+- 想了解仪表盘全局过滤（编辑态规则、查询自动注入）：阅读 [完整产品能力 · 全局过滤](./features.md)（Develop：[设计与实现](../develop/dashboard-global-filters.md)）。
 
 开发与发版规划（里程碑、版本节奏、治理规范）维护在 MetaRepo 的 [`plan/`](https://github.com/DataLuminary/DataLuminary-Platform/tree/main/plan) 目录，不在产品文档中重复展开。
 

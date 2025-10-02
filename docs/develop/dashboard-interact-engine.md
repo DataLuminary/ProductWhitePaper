@@ -111,3 +111,4 @@
 | 产品优势 | [product/features.md](../product/features.md) |
 | 前端实现 spec | `DataView/spec/development/dashboard-interact-engine.md` |
 | MetaRepo 索引 | `spec/development/dashboard-interact-overview.md` |
+| 仪表盘全局过滤（非本引擎） | [dashboard-global-filters.md](./dashboard-global-filters.md) |
