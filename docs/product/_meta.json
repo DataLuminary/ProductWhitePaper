@@ -26,6 +26,11 @@
   },
   {
     "type": "file",
+    "name": "dashboard-layout-plugins",
+    "label": "仪表盘与布局插件"
+  },
+  {
+    "type": "file",
     "name": "vision",
     "label": "产品愿景"
   },

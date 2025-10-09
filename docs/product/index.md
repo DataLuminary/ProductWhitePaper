@@ -27,6 +27,7 @@ DataLuminary 是面向 AI 时代的开源 BI 数据洞察平台。它把数据�
 - 想了解五产品协同：阅读 [LuminaryWorks AI 生态](./ecosystem.md)。
 - 想了解产品边界（含无障碍范围）：阅读 [无障碍范围说明](./accessibility-scope.md)。
 - 想了解自由布局大屏为何固定尺寸：阅读 [自由布局大屏固定尺寸](./position-layout-fixed-canvas.md)（Develop：[设计与实现](../develop/dashboard-position-layout.md)）。
+- 想了解仪表盘 / 布局插件分层与 Focus 聚焦编辑：阅读 [仪表盘与布局插件](./dashboard-layout-plugins.md)（Develop：[设计与实现](../develop/dashboard-layout-plugins.md)）。
 - 想了解仪表盘交互（筛选 / 联动 / 下钻）架构：阅读 [完整产品能力 · 交互引擎](./features.md)（Develop：[设计与实现](../develop/dashboard-interact-engine.md)）。
 - 想了解仪表盘全局过滤（编辑态规则、查询自动注入）：阅读 [完整产品能力 · 全局过滤](./features.md)（Develop：[设计与实现](../develop/dashboard-global-filters.md)）。
 

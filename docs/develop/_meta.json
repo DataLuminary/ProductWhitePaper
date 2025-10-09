@@ -1,7 +1,22 @@
 [
   {
     "type": "file",
+    "name": "dashboard-layout-plugins",
+    "label": "仪表盘与布局插件架构"
+  },
+  {
+    "type": "file",
     "name": "dashboard-position-layout",
     "label": "自由布局大屏设计与实现"
+  },
+  {
+    "type": "file",
+    "name": "dashboard-interact-engine",
+    "label": "仪表盘交互引擎"
+  },
+  {
+    "type": "file",
+    "name": "dashboard-global-filters",
+    "label": "仪表盘全局过滤"
   }
 ]

@@ -1,5 +1,7 @@
 ## 图表插件
-图表插件为DataLuminary带来的不同类型的图表（如饼图、地图、富文本）展示。
+图表插件为 DataLuminary 带来不同类型的图表（如饼图、地图、富文本）展示。
+
+富文本（`rich-text`）为半依赖查询的文本 Widget：配置区用 MDX 编辑器撰写内容，并以 `<BIMetric />` 胶囊绑定查询指标。产品说明见 [富文本图表](./rich-text.md)，实现规格见 DataView `spec/development/rich-text-panel.md`。
 
 **作用**：根据选择图表类型，会展示相应图表配置信息
 

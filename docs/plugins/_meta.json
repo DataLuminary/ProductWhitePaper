@@ -20,6 +20,16 @@
   },
   {
     "type": "file",
+    "name": "panelTypes",
+    "label": "图表类型一览"
+  },
+  {
+    "type": "file",
+    "name": "rich-text",
+    "label": "富文本图表"
+  },
+  {
+    "type": "file",
     "name": "dashboard",
     "label": "面板插件"
   },
