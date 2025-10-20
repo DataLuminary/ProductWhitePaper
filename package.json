@@ -21,5 +21,10 @@
     "eslint": "^9.19.0",
     "globals": "^15.14.0",
     "typescript-eslint": "^8.22.0"
+  },
+  "pnpm": {
+    "patchedDependencies": {
+      "@rspack/core@1.2.2": "patches/@rspack__core@1.2.2.patch"
+    }
   }
 }
