@@ -4,7 +4,7 @@ pageType: home
 hero:
   name: DataLuminary
   text: AI-Native BI for every team
-  tagline: 全链路 BI 数据洞察平台，支持拖拽分析、AI 分步骤打磨与一句话生成。
+  tagline: 全链路 BI 数据洞察平台，支持拖拽与自然语言洞察分析。
   actions:
     - theme: brand
       text: 战略白皮书

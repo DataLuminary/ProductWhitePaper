@@ -42,9 +42,13 @@ DataLuminary 的产品形态不是单一报表工具，而是一套可以面向�
 
 面向 SaaS、行业系统和内部业务系统，DataLuminary 可以作为嵌入式 BI 能力：
 
-- 将图表、仪表盘、报表和洞察模块嵌入现有业务页面。
-- 通过权限、Token、租户和资源隔离适配多客户场景。
+- 将仪表盘嵌入现有业务页面（iframe、CDN JS SDK、Micro App、Wujie；图表级嵌入规划中）。
+- 通过分享 Token、短期 `share-view` 会话、空间启停与资源隔离适配多客户场景。
+- 跨域优先走客户侧反向代理（`proxy` 指向代理后的 DataTalk）；按空间动态 CORS 规划中。
 - 通过插件和 Schema 保持配置可迁移、可复用、可版本化。
+- 另可通过 **订阅推送** 将仪表盘截图 / PDF 定时投递到邮箱（与嵌入并列的「推」模式）。
+
+产品说明见 [分享总览](../share/index.md)、[仪表盘嵌入](../share/embed.md)、[订阅推送](../share/subscription.md)。
 
 ## 6. 插件与行业模板生态
 

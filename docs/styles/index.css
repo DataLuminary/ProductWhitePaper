@@ -1,0 +1,4 @@
+/* Hero tagline：两行时避免行距过紧 */
+.rspress-home-hero-tagline {
+  line-height: 1.6;
+}

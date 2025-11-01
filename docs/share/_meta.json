@@ -2,21 +2,31 @@
   {
     "type": "file",
     "name": "index",
-    "label": "数据消费"
+    "label": "分享总览"
   },
   {
     "type": "file",
-    "name": "Compare",
+    "name": "embed",
+    "label": "仪表盘嵌入"
+  },
+  {
+    "type": "file",
+    "name": "subscription",
+    "label": "订阅推送"
+  },
+  {
+    "type": "file",
+    "name": "compare",
     "label": "竞品对比"
   },
   {
     "type": "file",
-    "name": "Grafana",
-    "label": "Grafana迁入"
+    "name": "grafana",
+    "label": "Grafana 迁入"
   },
   {
     "type": "file",
-    "name": "DataEase",
-    "label": "DataEase迁入"
+    "name": "dataease",
+    "label": "DataEase 迁入"
   }
 ]

@@ -9,6 +9,7 @@ export default defineConfig({
     light: "/brand-logo.png",
     dark: "/brand-logo.png",
   },
+  globalStyles: path.join(__dirname, "docs/styles/index.css"),
   themeConfig: {
     socialLinks: [
       {

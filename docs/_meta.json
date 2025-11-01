@@ -1,23 +1,31 @@
 [
   {
-    "text": "Share ",
+    "text": "Share",
     "activeMatch": "/share/",
     "items": [
       {
-        "text": "Share",
-        "link": "/share/index"
+        "text": "分享总览",
+        "link": "/share/"
       },
       {
-        "text": "Compare",
-        "link": "share/compare"
+        "text": "仪表盘嵌入",
+        "link": "/share/embed"
       },
       {
-        "text": "Grafana",
-        "link": "share/grafana"
+        "text": "订阅推送",
+        "link": "/share/subscription"
       },
       {
-        "text": "DataEase",
-        "link": "share/dataease"
+        "text": "竞品对比",
+        "link": "/share/compare"
+      },
+      {
+        "text": "Grafana 迁入",
+        "link": "/share/grafana"
+      },
+      {
+        "text": "DataEase 迁入",
+        "link": "/share/dataease"
       }
     ]
   },
