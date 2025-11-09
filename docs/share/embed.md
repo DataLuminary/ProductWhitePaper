@@ -6,6 +6,15 @@ DataLuminary 将仪表盘做成可嵌入的原子资源：企业客户可在自�
 
 > 图表（Panel）嵌入、访问日志、React 组件嵌入、Veaury 桥接本期未开放。
 
+### 在线演示
+
+| 资源 | 链接 |
+|------|------|
+| **演示站** | [https://demo.dataluminary.dev](https://demo.dataluminary.dev) — iframe / JS SDK / Micro App / Wujie 四种嵌入实况 |
+| **源码** | [github.com/DataLuminary/share-demo](https://github.com/DataLuminary/share-demo) |
+
+演示站默认使用环境变量中的固定 `shareUid` + `token`；页面上也可自行填写联调。MetaRepo 本地：`pnpm --dir share-demo install && pnpm dev:share-demo`。
+
 ---
 
 ## 配置流程（产品侧）
