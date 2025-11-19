@@ -17,7 +17,7 @@
   "devDependencies": {
     "@biomejs/biome": "^2.4.16",
     "@eslint/js": "^9.19.0",
-    "@types/node": "^18.11.17",
+    "@types/node": "^24.0.0",
     "eslint": "^9.19.0",
     "globals": "^15.14.0",
     "typescript-eslint": "^8.22.0"
@@ -26,5 +26,8 @@
     "patchedDependencies": {
       "@rspack/core@1.2.2": "patches/@rspack__core@1.2.2.patch"
     }
+  },
+  "engines": {
+    "node": ">=24.0.0"
   }
 }

@@ -2,8 +2,9 @@
 
 ## 一、当前实现概览
 
-- **DataTalk（后端）**：内置 RBAC（角色权限、用户角色、角色资源范围）、权限码（如 `space:view`、`user:edit`）、资源级控制（空间/仪表盘/图表/数据集/数据源）。**支持对接企业 IDP/SSO**：认证可切换为本地账号或 SSO Token，通过「第三方角色映射」将 IdP 角色映射到本系统角色。
-- **DataView（前端）**：在「系统设置」下提供 **权限管理**（角色权限、用户角色、角色资源范围、**第三方角色映射**）与 **用户管理**（用户 CRUD、分配角色、状态启用/禁用/封禁）。入口：顶部导航「设置」、空间列表页「权限管理」「用户管理」按钮。
+- **身份认证（AuthN）**：默认走 **LuminaryWorks 统一账号**（OIDC，经 Auth Gateway → Logto / 企业 IdP）。DataView 主 CTA 为统一登录；`AUTH_MODE=local` 的账密登录仅开发回退。详见产品文档 [统一身份与企业 SSO](../product/unified-identity.md)。
+- **DataTalk（后端）**：内置 RBAC + **Casbin** 资源 ACL（空间/仪表盘/图表/数据集/数据源）。SSO：`POST /auth/sso/login` 校验 IdP access token（JWKS），映射 `sub` → 本地用户，并可同步第三方角色映射。
+- **DataView（前端）**：OIDC PKCE（`src/lib/idp.ts`）→ 回调换票；「系统设置」下提供权限管理与用户管理。
 
 ### 1.1 BI 空间隔离与资源继承关系
 
@@ -89,35 +90,41 @@
 
 ---
 
-## 五、SSO/第三方权限对接（已实现）
+## 五、统一账号 / SSO 对接（已实现）
 
-- **认证策略**  
-  - **本地（AUTH_MODE=local）**：`POST /auth/login` 使用账号密码，通过 `LocalAuthStrategy` 校验，签发本系统 JWT。  
-  - **SSO（对接企业 IdP）**：`POST /auth/sso/login` 请求体 `{ accessToken: string }`，使用 `SsoAuthStrategy` 校验 IdP 颁发的 JWT（需配置 `SSO_JWT_SECRET` 或后续扩展 JWKS），解析出 `sub/name/email/roles`，再与本系统用户关联并同步映射角色。  
-- **用户关联**  
-  - 通过 `user.external_id`（对应 IdP 的 sub）或 `user.email` 解析已有用户；若不存在则自动创建本地用户（`auth_source=sso`），不暴露密码。  
-- **角色映射**  
-  - 表 `external_role_mapping`：`external_role_code`（第三方角色/组标识）→ `local_role_id`（本系统角色）。  
-  - SSO 登录时：根据 token 中的角色列表查映射，将对应本系统角色写入 `user_role`，此后权限与本地 RBAC 一致。  
-- **配置**  
-  - `.env` / `.env.example`：`AUTH_MODE`、`SSO_JWT_SECRET`、`SSO_ROLES_CLAIM`（如 `roles` 或 `realm_access.roles`）。  
-- **前端**  
-  - 权限管理页增加「第三方角色映射」Tab：维护外部角色标识 → 本系统角色的映射。  
-  - 嵌入企业系统时：由宿主应用取得 IdP token，调用 `POST /auth/sso/login` 传入 `accessToken`，拿到本系统 JWT 后访问 DataView。  
+分层约定（与 LuminaryWorks IAM 一致）：
 
-这样既可**独立部署**（本地账号 + 本系统权限），也可**以 SaaS/PaaS 嵌入**（企业 IdP 登录 + 映射对接本系统资源与权限）。
+| 层级 | 载体 | 说明 |
+|------|------|------|
+| AuthN | Auth Gateway → IdP（Logto / 企业 OIDC） | 只管「谁登录」 |
+| Entitlement | 中央权益服务 | Trial / 套餐 / License，**不进 JWT** |
+| AuthZ | DataTalk RBAC + Casbin | 空间/看板等资源 ACL，**不塞进 IdP** |
+
+- **认证策略**
+  - **生产默认（AUTH_MODE=sso）**：前端 OIDC PKCE → `POST /auth/sso/login` `{ accessToken }`；`SsoAuthStrategy` 经 JWKS 验签，解析 `sub/name/email/roles`，映射本地用户。
+  - **开发回退（AUTH_MODE=local）**：`POST /auth/login` 本地账密；前端须 `VITE_ALLOW_LOCAL_LOGIN=true`。
+- **用户关联**
+  - `user.external_id`（IdP `sub`）或 email；不存在则自动创建（`auth_source=sso`），不暴露密码。
+- **角色映射**
+  - 表 `external_role_mapping`：外部角色码 → 本地角色；SSO 登录时写入 `user_role`。
+- **配置**
+  - DataTalk：`IDP_ISSUER`（或 Gateway issuer）、`IDP_AUDIENCE`、`AUTH_MODE`、`SSO_ROLES_CLAIM`。
+  - DataView：`VITE_IDP_*` / `VITE_AUTH_GATEWAY_URL`、`VITE_ALLOW_LOCAL_LOGIN`。
+- **前端**
+  - 登录页主路径为统一账号；权限管理含「第三方角色映射」。
+  - 嵌入场景：宿主传入 IdP token 时可调用 `POST /auth/sso/login` 静默换票。
+
+这样：**SaaS** 用统一账号；**企业私有化** 只改 issuer / Gateway upstream（接 AD/飞书/钉钉等），BI 资源权限仍由本系统管理。
 
 ---
 
 ## 六、本仓库已做的完善（与后续可做）
 
-- **前端**  
-  - 提供统一的 **系统设置** 入口（顶部导航「设置」），并在此下提供 **权限管理**（含第三方角色映射）、**用户管理** 子页。  
-  - 设置采用布局页 + 子路由（如 `/settings`、`/settings/permission`、`/settings/users`），便于后续增加更多设置项。  
-  - 权限/用户管理页面已存在且可用；无 `user:view` 的用户不显示「设置」入口，访问设置相关路由会被鉴权拦截。  
-- **后端**  
-  - 已有完整 RBAC、用户 CRUD、登录返回角色与权限与资源范围；资源操作（含禁用）与权限码一致。  
-  - 已实现认证策略抽象（`LocalAuthStrategy`、`SsoAuthStrategy`）、SSO 登录接口、第三方角色映射表与 API、SSO 登录时自动同步映射角色。  
-- **后续可做**  
-  - 若 IdP 使用 RS256：在 `SsoAuthStrategy` 中增加 JWKS 拉取与校验。  
-  - 前端在「嵌入模式」下：检测到宿主传入的 token 时自动调用 `POST /auth/sso/login` 完成静默登录。
+- **前端**
+  - 统一账号优先登录页；OIDC path 回调 `/auth/callback`。
+  - **系统设置** 入口（权限管理含第三方角色映射、用户管理）。
+- **后端**
+  - RBAC + Casbin scaffolding；`LocalAuthStrategy` / `SsoAuthStrategy`（JWKS）；SSO 角色映射。
+- **后续可做**
+  - 嵌入模式：检测宿主 token 自动静默 SSO。
+  - 权限服务独立拆分：仅当多系统强共用同一套资源 ACL 时再评估（身份已由生态 Identity 承担）。

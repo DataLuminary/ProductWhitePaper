@@ -30,7 +30,7 @@
 
 - **独立商业化**：每个产品都能单独部署、单独交付、单独服务客户。
 - **松耦合集成**：跨产品协同通过 HTTP、OIDC、SDK 与数据源插件完成，不做运行时强绑定。
-- **统一身份可选**：接入 LuminaryWorks 共享登录后，同一账号可跨产品访问；未接入时仍可使用 DataLuminary 本地账号体系。
+- **默认统一身份**：SaaS / 标准部署使用 LuminaryWorks 统一账号（经 Auth Gateway → IdP）；企业私有化改为企业 SSO（AD / 飞书 / 钉钉 / 企微 / Azure AD 等），产品无感。本地账密仅开发回退。详见 [统一身份与企业 SSO](./unified-identity.md)。
 - **社区共同成长**：不同社区围绕各自行业能力贡献数据源、模板、插件和场景方案。
 
 ## 常见组合场景
@@ -47,5 +47,6 @@
 ## 延伸阅读
 
 - [DataLuminary 战略白皮书](./whitepaper.md)
+- [统一身份与企业 SSO](./unified-identity.md)
 - [LuminaryWorks 宣传站](https://luminaryworks.dev)
 - [LuminaryWorks 域名与品牌](https://github.com/LuminaryWorks/LuminaryWorks/blob/main/spec/domain-and-branding.md)

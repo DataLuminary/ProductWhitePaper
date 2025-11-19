@@ -4,10 +4,12 @@ DataLuminary 的完整产品能力围绕 **数据源 → 数据集 → 指标治
 
 ## 账号与权限
 
-- 用户注册、登录、本地账号与企业 SSO。
+- **默认统一账号登录**（LuminaryWorks OIDC / Auth Gateway）；企业私有化对接企业 SSO（AD、飞书、钉钉、企微、Azure AD、SAML、LDAP 等）。
+- 本地账密仅开发 / 迁移回退，正式交付关闭。详见 [统一身份与企业 SSO](./unified-identity.md)。
 - 组织、空间、项目、资源等多层级协作模型。
-- 基于角色、资源、数据范围和操作权限的访问控制。
+- 基于角色、资源、数据范围和操作权限的访问控制（产品内 Casbin / RBAC；**不把 BI ACL 塞进 IdP**）。
 - 审计、版本、发布、订阅与访问统计。
+- 战略说明见 [白皮书 · 统一账号](./whitepaper.md#3-统一账号与企业-sso战略必选项)；权限选型见 [权限架构](../permission/PERMISSION_ARCHITECTURE.md)。
 
 ## 数据接入
 
