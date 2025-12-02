@@ -2,3 +2,22 @@
 .rspress-home-hero-tagline {
   line-height: 1.6;
 }
+
+/* Mermaid diagrams rendered from ```mermaid fences */
+.mermaid-diagram {
+  margin: 1.25rem 0;
+  overflow-x: auto;
+  text-align: center;
+}
+
+.mermaid-diagram svg {
+  max-width: 100%;
+  height: auto;
+}
+
+.mermaid-diagram--error {
+  color: #b42318;
+  text-align: left;
+  white-space: pre-wrap;
+  font-size: 0.875rem;
+}

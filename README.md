@@ -1,7 +1,6 @@
 ﻿# ProductWhitePaper
 
-ProductWhitePaper is the RsPress site for DataLuminary user and developer
-documentation.
+ProductWhitePaper is the [Rspress 2](https://rspress.rs/) site for DataLuminary user and developer documentation.
 
 ## Setup
 
@@ -10,6 +9,8 @@ Install the dependencies:
 ```bash
 pnpm install
 ```
+
+Requires **Node.js >= 24** (see `engines` / `.nvmrc`).
 
 ## Get started
 

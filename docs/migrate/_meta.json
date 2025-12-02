@@ -1,0 +1,17 @@
+[
+  {
+    "type": "file",
+    "name": "compare",
+    "label": "竞品对比"
+  },
+  {
+    "type": "file",
+    "name": "grafana",
+    "label": "Grafana 迁入"
+  },
+  {
+    "type": "file",
+    "name": "dataease",
+    "label": "DataEase 迁入"
+  }
+]

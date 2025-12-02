@@ -1,155 +1,66 @@
-## 图表插件
-图表插件为 DataLuminary 带来不同类型的图表（如饼图、地图、富文本）展示。
+# 图表插件
 
-富文本（`rich-text`）为半依赖查询的文本 Widget：配置区用 MDX 编辑器撰写内容，并以 `<BIMetric />` 胶囊绑定查询指标。产品说明见 [富文本图表](./rich-text.md)，实现规格见 DataView `spec/development/rich-text-panel.md`。
+图表（panel）插件负责 **某一类可视化或 Widget** 的渲染与属性配置。数据由平台按数据集查询后注入，插件不连接数据库。
 
-**作用**：根据选择图表类型，会展示相应图表配置信息
+富文本（`rich-text`）为半依赖查询的文本 Widget：MDX + `<BIMetric />` 指标胶囊。见 [富文本图表](./rich-text.md)。
 
-比如说 当你选择折线图时，会展示出 tooltips，legend等线图相关的配置
+## 插件组成
 
-DataLuminary 作为数据可视化 图表配置平台，集成到DataLuminary的图表插件必须包含
-+ 图表配置面板组件 （PropsPanel）
-+ 图表展示组件 （ChartPanel）
+| 部件 | 职责 |
+|------|------|
+| **Panel** | 根据 `data` + `config` 渲染视图 |
+| **Config** | 右侧 / 抽屉配置表单（系列、轴、样式等） |
+| **meta** | `kind`、名称、图标、是否依赖查询等 |
 
-下面以仪表盘图表组件为例
-
-### 仪表盘图表插件
-
-```
-| -- plugins
-  |-- charts 数据源插件
-    |-- index.ts entry
-    |-- gauge msyql数据源插件
-      |-- plugin.json  仪表盘图表插件 元数据 信息
-      |-- index.ts 插件入口
-      |-- config 数据处理类
-        |-- renderGaugeData.ts  查数据源查询的数据，转到到比如echars 的opitons 配置项
-      |-- components 
-        |-- ChartPanel.tsx 图表渲染组件 （展示图表调用的组件）
-        |-- PropsPanel.tsx 配置图表参数组件
-      |-- img
-        |-- logo.svg          
-```
-#### 图表数据说明
-
-DataLuminary的图表数据结构如下：
+定义方式（示意）：
 
 ```typescript
-export class PanelModel<
-  Datasource = DatasourceMysql, Query = QueryMysqlSimple, ChartConfig = ChartConfigForm
-  > implements IPanelModel<Datasource, Query, ChartConfig> {
-  uid: string;
-  space_uid?: string;
-  // 图表类型 如 line-chart bar-chart status-chart group
-  type: string;
-  active?: string;
-  permissions: PermissionUser;
-  // 图表title
-  title: string;
-  sub_title: string;
-  data_type: string;
-  // 是否内置插件
-  build_in: boolean;
-  meta: BaseMetaInfo;
-  // 图表位置
-  gridPos = new IGridPos();
-  filters?: FilterType[] = [];
-  // 图表配置
-  options?: PanelModelOptions;
-  // 图表数据源
-  datasource: Datasource;
-  // 图表query配置
-  query: Query[];
-  // 组内视图列表
-  panels?: IPanelModel[] | PanelModel[];
-  chartStyle = new ChartStyle();
-  chartConfig: ChartConfig;
-  // 是否正在drag中
-  dragging = false;
-  // 是否折叠
-  collapsed?: boolean = false;
+import { definePanelPlugin } from "@/plugins/panels/shared";
 
-  constructor(model?: Record<string, any>) {
-    if (model) {
-      Object.assign(this, model);
-      if (!this.chartStyle || JSON.stringify(this.chartStyle) === '{}') {
-        this.chartStyle = new ChartStyle();
-      }
-      this.updateGridPos(model.gridPos);
-    }
-  }
-
-  public updateGridPos(v: IGridPos) {
-    if (this.type === 'row') {
-      this.gridPos = {
-        ...v,
-        w: GRID_COL_NUM,
-        h: 1,
-        minH: 1,
-        minW: GRID_COL_NUM,
-        maxH: 1,
-        maxW: GRID_COL_NUM,
-        i: this.uid,
-      };
-      return;
-    }
-    if (this.type === 'tab') {
-      this.gridPos = {
-        ...v,
-        w: GRID_COL_NUM,
-        minH: GRID_CELL_MIN_HEIGHT,
-        minW: GRID_COL_NUM,
-        maxH: 100,
-        maxW: GRID_COL_NUM,
-        i: this.uid,
-      };
-      return;
-    }
-    this.gridPos = {
-      ...v,
-      minH: GRID_CELL_MIN_HEIGHT,
-      minW: GRID_CELL_MIN_WIDTH,
-      maxH: GRID_CELL_MAX_HEIGHT,
-      maxW: GRID_COL_NUM,
-      i: this.uid,
-    };
-  }
-}
-
+export default definePanelPlugin({
+  kind: "line",
+  Panel: LineChartPanel,
+  Config: LineChartConfig,
+  // AdvancePanel?: 可选高级面板
+});
 ```
 
-+ 图表的配置数据（如echarts 配置项） 想数据 保存在  `chartConfig`，
-由 PropsPanel配置（实际就是 `chartConfig` 表单)
-+ 图表全局样式（如标题是否展示、边框设置等配置) 保存在 `chartStyle`，这个有DataLuminary提供
+## 目录示例
 
-##### ChartPanel.tsx
+```text
+DataView/src/plugins/panels/line/
+  index.ts
+  package.json
+  components/Panel.tsx
+  components/Config.tsx
+  img/logo.svg
+```
+
+## 数据与配置
+
+- **查询绑定**：`panel.dataset` + `panel.query`（由宿主查询控制器执行）。  
+- **图表专属配置**：落在 `panel.config`（由 Config 表单维护）。  
+- **画布级样式**（标题显隐、边框等）：由编辑器壳统一字段承载，插件不必重复发明。
 
 ```typescript
-const props = {
-  panelModel: {
-    type: Object as PropType<IPanelModel>,
-    required: true,
-  },
-  // 图表渲染数据
-  chartData: {
-    type: Object as PropType<ChartData>,
-    required: true,
-  },
-  // 图表主题
-  chartStyle: {
-    type: Object as PropType<ChartStyle>,
-    required: true,
-  },
+// 宿主传给 Panel 的核心输入（概念）
+type PanelRenderProps = {
+  config: Record<string, unknown>;
+  data: { columns: Column[]; rows: Row[] } | null;
+  loading: boolean;
+  error?: string;
 };
 ```
-DataLuminary 平台传给图表插件 `数据源插件 query的的数据` (参考：  [图表接口说明](../api/Charts))
-渲染出图表
-> 建议chartData 到图表渲染数据  封装在 hooks 里面，这样利于图表插件 适配不同的 图表库（如echarts、antV、D3等)
 
+建议将「查询结果 → 具体图表库 option」封装为 hooks，便于同一 kind 切换 G2 / ECharts 等实现。
 
-##### PropsPanel.tsx
-图表配置表单组件
+## 内置类型
 
-##### 图表编辑说明
-具体参看
-![chart_plugin_info](./images/chart_plugin_info.png)
+见 [图表类型一览](./panelTypes.md)。
+
+## 开发注意
+
+1. **只渲染、不取数**：禁止在 Panel 内直接打外部 JDBC/HTTP 绕过 QueryService（除明确的纯前端 Widget，如 `image` / `video`）。  
+2. **插件间不互调**：联动与筛选由仪表盘交互引擎根据状态派生。  
+3. **仪表盘上的可视块都应是 panel / action / layout**：保持资源模型一致，便于权限与分享。  
+4. 返回字段约定见 [API · Panel](/api/Charts)。

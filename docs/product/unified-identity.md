@@ -48,5 +48,5 @@ DataView 登录页主按钮为「使用统一账号登录」；本地用户名�
 
 ## 与权限文档的关系
 
-资源级授权、空间隔离、第三方角色映射见 [权限架构说明](../permission/PERMISSION_ARCHITECTURE.md)。  
+资源级授权、空间隔离、第三方角色映射见 [权限架构设计](../permission/architecture.md)；产品叙事见 [权限概念](../permission/index.md)。  
 战略背景见 [战略白皮书 · §3](./whitepaper.md#3-统一账号与企业-sso战略必选项)。

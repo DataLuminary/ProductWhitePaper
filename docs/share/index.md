@@ -39,4 +39,4 @@ DataLuminary 的「分享」指把空间内的仪表盘**分发到平台编辑�
 | 鉴权 | 公开 token → 短期 `share-view` JWT | 管理端 JWT；无头渲染用短期 render JWT |
 | 未开放 | 图表级嵌入、访问日志、npm SPA 组件 | 企微推送、仪表盘变量参数块 |
 
-竞品与迁入说明仍在同目录：[竞品对比](./compare.md)、[Grafana 迁入](./grafana.md)、[DataEase 迁入](./dataease.md)。
+竞品与迁入见：[竞品对比](../migrate/compare.md)、[Grafana 迁入](../migrate/grafana.md)、[DataEase 迁入](../migrate/dataease.md)。

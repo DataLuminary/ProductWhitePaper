@@ -101,5 +101,5 @@ DataLuminary 可单独售卖，也可与 SyncroBrain、VistaCast、VistaRemote�
 | [统一身份与企业 SSO](./unified-identity.md) | 产品 / 售前 / 私有化交付 |
 | [完整产品能力](./features.md) | 产品 / 售前 |
 | [产品愿景](./vision.md) | 战略 / 投资 |
-| [权限架构](../permission/PERMISSION_ARCHITECTURE.md) | 架构 / 交付 |
+| [权限架构](../permission/architecture.md) | 架构 / 交付 |
 | [LuminaryWorks 统一登录](https://github.com/LuminaryWorks/docs/blob/main/docs/develop/unified-login.md) | 研发 |

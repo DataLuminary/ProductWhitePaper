@@ -9,7 +9,7 @@ DataLuminary 的完整产品能力围绕 **数据源 → 数据集 → 指标治
 - 组织、空间、项目、资源等多层级协作模型。
 - 基于角色、资源、数据范围和操作权限的访问控制（产品内 Casbin / RBAC；**不把 BI ACL 塞进 IdP**）。
 - 审计、版本、发布、订阅与访问统计。
-- 战略说明见 [白皮书 · 统一账号](./whitepaper.md#3-统一账号与企业-sso战略必选项)；权限选型见 [权限架构](../permission/PERMISSION_ARCHITECTURE.md)。
+- 战略说明见 [白皮书 · 统一账号](./whitepaper.md#3-统一账号与企业-sso战略必选项)；权限选型见 [权限架构](../permission/architecture.md)。
 
 ## 数据接入
 

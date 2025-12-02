@@ -1,0 +1,22 @@
+[
+  {
+    "type": "file",
+    "name": "index",
+    "label": "概念"
+  },
+  {
+    "type": "file",
+    "name": "usage",
+    "label": "申请与审批"
+  },
+  {
+    "type": "file",
+    "name": "architecture",
+    "label": "架构设计"
+  },
+  {
+    "type": "file",
+    "name": "faq",
+    "label": "常见问题"
+  }
+]

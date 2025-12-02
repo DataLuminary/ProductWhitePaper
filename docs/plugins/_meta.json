@@ -2,12 +2,12 @@
   {
     "type": "file",
     "name": "index",
-    "label": "核心概念及定义"
+    "label": "核心概念"
   },
   {
     "type": "file",
     "name": "design",
-    "label": "插件开发说明"
+    "label": "开发说明"
   },
   {
     "type": "divider",
@@ -31,7 +31,7 @@
   {
     "type": "file",
     "name": "dashboard",
-    "label": "面板插件"
+    "label": "仪表盘与布局"
   },
   {
     "type": "file",

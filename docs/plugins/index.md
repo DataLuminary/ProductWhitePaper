@@ -1,81 +1,66 @@
-## 核心概念及定义
+# 插件：核心概念
 
-### 面板定义
-面板是一个视图（比如多个图表、富文本）的集合定义。
+DataLuminary 采用 **微内核 + 插件** ：宿主提供编辑器壳、查询通道、权限与状态；场景差异由插件吸收。
 
-每一个dashboard包含多个标签(BookMark)，每一个标签都是一个视图集合定义。
+当前前端（DataView）内置五类插件模式：
 
-这里的标签我们可以等价于grafana平台上的dashboard，当然默认是单标签。
->BookMark 功能本身也是通过 Dashboard 类型插件实现
+| Mode | 目录 | 职责 |
+|------|------|------|
+| **datasource** | `src/plugins/datasource/` | 数据源 **连接配置 UI**；调用 DataTalk `/api/connect/*`。**不**向图表直供数据 |
+| **panel** | `src/plugins/panels/` | 图表 / Widget：渲染 + 配置；数据由宿主查询后以 props 注入 |
+| **action** | `src/plugins/actions/` | 仪表盘交互控件：输入、单选、下拉、时间等 |
+| **dashboard** | `src/plugins/dashboard/` | **整页几何**：`grid` / `position` / `list` |
+| **layout** | `src/plugins/layout/` | **页内容器**：行分组、标签页、轮播 |
 
-![image-20220123145828665](./images/image-20220123145828665.png)
-### 面板插件
-dashboard 由面板插件生成，内置有：
-+ grid-panel（网格视图）,基于`react-gird-layout`，可以导入grafana面板
-+ position-panel(位置视图)，基于`tmagic-editor`适合大屏场景
-+ card-panel(卡片视图)，适合报表、邮件、看板等场景
-+ list-panel(列表视图)，适合移动端场景
-具体参看：[面板插件](/plugin/dashboard.md)
+> 历史 bk-vision 文档中的 SystemJS、Vuex、图表直连 `datasource.query()`、`card-panel` / tmagic 等，**已废弃**。请以本文与 DataView `src/plugins/`、`spec/development/` 为准。
 
+## 数据流（与 Grafana / 旧版的关键区别）
 
-### datasource 数据源插件
+许多 BI 让图表直连数据源 QueryEditor。DataLuminary 强制：
 
-数据源插件负责数据源的接入，同时提供基础的数据查询功能
-> 注意，图表消费的数据，我们默认由数据集集提供。 比如mysql 插件主要负责mysql接入平台，其Query模块负责在数据集中查看原始数据。
+```text
+数据源插件（配连接）
+  → 数据集（语义字段）
+  → 图表 panel.dataset + panel.query
+  → POST /query/panel（DataTalk QueryService）
+  → Chart Panel 只渲染返回数据
+```
 
-![image-20220124103312588](./images/image-20220124103312588.png)
+```mermaid
+flowchart LR
+  DS[Datasource 插件] --> SET[数据集]
+  SET --> Q[Panel.query]
+  Q --> API[QueryService]
+  API --> CH[Panel 渲染]
+  CH --> DB[Dashboard / Layout 编排]
+```
 
+## 仪表盘 vs 布局
 
-* ConfigPanel用于配置数据源基础信息配置。 即数据源插件初始化时的配置 与grafana ConfigEditor一致
+- **仪表盘插件**：整页怎么排（门户网格、大屏固定画布、移动列表）。  
+- **布局插件**：页内如何分组嵌套（分组 / 标签 / 轮播）；槽位内仍是 **同家族** 画布。  
+- 深入容器内部编辑使用 **Focus Mode**（保存合并、取消丢弃）。
 
-  ![image-20220124104150352](./images/image-20220124104150352.png)
+产品说明：[仪表盘与布局插件](/product/dashboard-layout-plugins) · 本目录：[面板插件](./dashboard.md)
 
-* QueryPanel用于配置数据查询。 相当于grafana QueryEditor 用于数据查询配置
+## 图表插件
 
-  ![image-20220124104228085](./images/image-20220124104228085.png)
+- 契约：`definePanelPlugin` → `Panel` / `Config`（可选 AdvancePanel）。  
+- 内置类型一览：[图表类型](./panelTypes.md)  
+- 富文本等特殊 Widget：[富文本](./rich-text.md)  
+- 开发说明：[图表插件](./panel.md)
 
-* VariablePanel用于配置变量查询。相当于grafana VariableQueryEditor 
+## 数据源插件
 
-  ![image-20220124104247286](./images/image-20220124104247286.png)
+- 只负责连接表单与测试；查询由数据集 + QueryService 完成。  
+- 内置示例：MySQL、PostgreSQL、SQL Server、ClickHouse、Excel。  
+- 详见：[数据源插件](./datasource.md)
 
-* **开发注意**
-  * datasource数据源插件的设计 基本上是参考了grafana数据源插件的设计模式 所以开发的时候可以参考一下grafana的实现方式
-  * 数据源只负责数据的配置和查询 所以datasource 需要实现不同的特定名称的方法来做到不同的数据查询定义 这里也与grafana的设计一致
-  * 数据的传导到图表展示也是通过平台来做中介
-  * 每个panel都会在渲染实例化时 传入特定的方法和datasource实例来供panel内调用
+## 交互（action）插件
 
-具体参看：[数据源插件](/plugin/datasource.md)
-### 图表定义
-不同于 grafana、DataEase、DataTalk等平台：
+筛选、时间范围等写入仪表盘状态；交互引擎按配置 **派生** 各图表附加条件（状态驱动，而非图表间事件互抛）。产品能力见 [完整产品能力 · 交互引擎](/product/features)；实现见 [交互引擎](/develop/dashboard-interact-engine)。
 
-视图层（如图表）由 ChartPanel的信息直连Datasource。
-![image-20220123150301691](./images/image-20220123150301691.png)
-我们的配图插件仅负责渲染数据和属性配置，图表的数据均由数据集（数据湖）提供
+## 下一步
 
-具体参看：[图表插件](../plugin/panel.md)
-
-### Panel 图表插件
-
-![image-20220124104336901](./images/image-20220124104336901.png)
-
-
-* PropsPanel 属性配置面板  用于图表属性配置
-
-  ![image-20220124104501102](./images/image-20220124104501102.png)
-
-* ChartPanel 图表面板 用于数据展示
-
-  ![image-20220124104550225](./images/image-20220124104550225.png)
-
-
-
-* **开发注意**
-
-  * 图表插件只负责数据的渲染和图表属性的配置 数据的获取都是同数据源来处理
-
-  * 图表插件内的属性配置后的信息都是通过平台来进行传导 panel与panel之间不需要交互
-  * 具体的开发设计细节查看上面的设计图
-  * dashboard中所有的展示都应该由图表插件来完成  图表插件可以是一个文、地图、一条线等等 没有具体的形式
-
-### 内置图表类型
-[图表类型说明](../plugin/panelTypes.md)
+- [插件开发说明](./design.md) — 注册、目录、加载机制  
+- [面板插件](./dashboard.md) · [图表插件](./panel.md) · [数据源插件](./datasource.md)

@@ -204,4 +204,4 @@ DataView 内部还有面向**图表 / 面板插件**的跨框架组合能力（V
 | React 组件 / Veaury / npm `LuminaryClient` SPA 挂载 | 规划中 |
 | 访问日志 | 规划中 |
 
-同目录相关：[分享总览](./index.md) · [订阅推送](./subscription.md) · [竞品对比](./compare.md) · [Grafana 迁入](./grafana.md) · [DataEase 迁入](./dataease.md)。
+同目录相关：[分享总览](./index.md) · [订阅推送](./subscription.md)。竞品与迁入：[竞品对比](../migrate/compare.md) · [Grafana 迁入](../migrate/grafana.md) · [DataEase 迁入](../migrate/dataease.md)。

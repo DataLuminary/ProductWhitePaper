@@ -1,5 +1,5 @@
 import * as path from "node:path";
-import { defineConfig } from "rspress/config";
+import { defineConfig } from "@rspress/core";
 
 export default defineConfig({
   root: path.join(__dirname, "docs"),
@@ -10,6 +10,7 @@ export default defineConfig({
     dark: "/brand-logo.png",
   },
   globalStyles: path.join(__dirname, "docs/styles/index.css"),
+  globalUIComponents: [path.join(__dirname, "components/MermaidRuntime.tsx")],
   themeConfig: {
     socialLinks: [
       {

@@ -18,5 +18,23 @@
     "type": "file",
     "name": "dashboard-global-filters",
     "label": "仪表盘全局过滤"
+  },
+  {
+    "type": "divider"
+  },
+  {
+    "type": "file",
+    "name": "iam-private-deploy",
+    "label": "私有化权限对接"
+  },
+  {
+    "type": "file",
+    "name": "iam-enterprise-sso",
+    "label": "企业 SSO 接入"
+  },
+  {
+    "type": "file",
+    "name": "embed-integration",
+    "label": "第三方嵌入对接"
   }
 ]

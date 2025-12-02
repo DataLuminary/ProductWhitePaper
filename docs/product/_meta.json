@@ -21,8 +21,21 @@
   },
   {
     "type": "file",
-    "name": "position-layout-fixed-canvas",
-    "label": "自由布局大屏固定尺寸"
+    "name": "vision",
+    "label": "产品愿景"
+  },
+  {
+    "type": "file",
+    "name": "ecosystem",
+    "label": "生态协同"
+  },
+  {
+    "type": "divider"
+  },
+  {
+    "type": "file",
+    "name": "unified-identity",
+    "label": "统一身份与企业 SSO"
   },
   {
     "type": "file",
@@ -31,12 +44,12 @@
   },
   {
     "type": "file",
-    "name": "vision",
-    "label": "产品愿景"
+    "name": "position-layout-fixed-canvas",
+    "label": "自由布局大屏固定尺寸"
   },
   {
     "type": "file",
-    "name": "ecosystem",
-    "label": "生态协同"
+    "name": "accessibility-scope",
+    "label": "无障碍范围"
   }
 ]
