@@ -61,6 +61,28 @@
   },
 
   {
+    "text": "Product",
+    "activeMatch": "/product/",
+    "items": [
+      {
+        "text": "Overview",
+        "link": "/product/index"
+      },
+      {
+        "text": "Features",
+        "link": "product/features"
+      },
+      {
+        "text": "Upcoming",
+        "link": "product/upcoming"
+      },
+      {
+        "text": "Vision",
+        "link": "product/vision"
+      }
+    ]
+  },
+  {
     "text": "API",
     "activeMatch": "/api/",
     "items": [
