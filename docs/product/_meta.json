@@ -1,22 +1,22 @@
 [
-	{
-		"type": "file",
-		"name": "index",
-		"label": "产品概览"
-	},
-	{
-		"type": "file",
-		"name": "features",
-		"label": "当前版本能力"
-	},
-	{
-		"type": "file",
-		"name": "upcoming",
-		"label": "未来版本规划"
-	},
-	{
-		"type": "file",
-		"name": "vision",
-		"label": "产品愿景"
-	}
+  {
+    "type": "file",
+    "name": "index",
+    "label": "产品概览"
+  },
+  {
+    "type": "file",
+    "name": "features",
+    "label": "当前版本能力"
+  },
+  {
+    "type": "file",
+    "name": "upcoming",
+    "label": "未来版本规划"
+  },
+  {
+    "type": "file",
+    "name": "vision",
+    "label": "产品愿景"
+  }
 ]
