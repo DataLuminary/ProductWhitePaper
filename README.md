@@ -1,4 +1,4 @@
-# ProductWhitePaper
+﻿# ProductWhitePaper
 
 ProductWhitePaper is the RsPress site for DataLuminary user and developer
 documentation.
@@ -46,3 +46,7 @@ Docs are deployed to [docs.dataluminary.dev](https://docs.dataluminary.dev) via 
 | CNAME | docs  | dataluminary.github.io   |
 
 After the first deploy, enable **GitHub Pages → Source: GitHub Actions** in repo settings if not already configured.
+
+## License
+
+[Polyform Noncommercial License 1.0.0](LICENSE) (Polyform-NC). See DataLuminary meta repo for commercial licensing.
