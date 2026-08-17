@@ -24,6 +24,7 @@ DataLuminary 是面向 AI 时代的开源 BI 数据洞察平台。它把数据�
 - 想了解统一账号与企业 SSO：阅读 [统一身份与企业 SSO](./unified-identity.md)。
 - 想了解完整产品形态：阅读 [产品形态](./shape.md)。
 - 想了解完整能力矩阵：阅读 [完整产品能力](./features.md)。
+- 想了解 AI 问数 / 洞察 / 配图：阅读 [AI 洞察](./ai-insights.md)（Develop：[设计与实现](../develop/ai-insights.md)）。
 - 想理解长期技术与产品判断：阅读 [产品愿景](./vision.md)。
 - 想了解五产品协同：阅读 [LuminaryWorks AI 生态](./ecosystem.md)。
 - 想了解产品边界（含无障碍范围）：阅读 [无障碍范围说明](./accessibility-scope.md)。

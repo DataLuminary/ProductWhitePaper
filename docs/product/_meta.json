@@ -21,6 +21,11 @@
   },
   {
     "type": "file",
+    "name": "ai-insights",
+    "label": "AI 洞察"
+  },
+  {
+    "type": "file",
     "name": "vision",
     "label": "产品愿景"
   },

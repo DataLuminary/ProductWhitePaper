@@ -20,6 +20,10 @@
         "link": "/product/features"
       },
       {
+        "text": "AI 洞察",
+        "link": "/product/ai-insights"
+      },
+      {
         "text": "产品愿景",
         "link": "/product/vision"
       },
@@ -170,6 +174,10 @@
       {
         "text": "全局过滤",
         "link": "/develop/dashboard-global-filters"
+      },
+      {
+        "text": "AI 洞察设计与实现",
+        "link": "/develop/ai-insights"
       },
       {
         "text": "私有化权限对接",

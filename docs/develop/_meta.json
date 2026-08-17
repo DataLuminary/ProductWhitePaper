@@ -20,6 +20,11 @@
     "label": "仪表盘全局过滤"
   },
   {
+    "type": "file",
+    "name": "ai-insights",
+    "label": "AI 洞察设计与实现"
+  },
+  {
     "type": "divider"
   },
   {
