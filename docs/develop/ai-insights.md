@@ -1,6 +1,6 @@
 # AI 洞察：设计与实现
 
-> **状态**：MVP 已落地（DL-M0～M5 主路径）  
+> **状态**：MVP 已落地；Agent Tool Registry、数据集创建、Workspace、RAG 与 MCP 已完成规格，尚未实现
 > **受众**：后端、前端、全栈、架构评审、AI Agent  
 > **产品说明**：[AI 洞察](../product/ai-insights.md)  
 > **路线图**：[plan/ai-insights-roadmap.md](https://github.com/DataLuminary/DataLuminary/blob/main/plan/ai-insights-roadmap.md)  
@@ -19,12 +19,16 @@
 
 ```text
 DataView AiInsightHost（AuthenticatedShell）
-  → POST /api/ai/chat
+  → POST /api/ai/chat（MVP）/ chat/stream（规划）
     → DataTalk AiModule / AiOrchestrator
       → Entitlement + Casbin（每次工具）
-      → Semantic / AnalysisEngine / QueryService
+      → ToolRegistry（规划）
+        → Datasource schema → Dataset draft / create
+        → Semantic / AnalysisEngine / QueryService
+        → Semantic / Document RAG（规划）
       → ChartIntentAdapter → DashboardService / PanelService / VersionService
       → AiProviderAdapter（本地 BYOK 或 LUMINARY_AI_BASE_URL）
+      → MCP adapter（规划；复用同一 ToolRegistry）
 ```
 
 | 层 | 归属 |
@@ -47,6 +51,14 @@ DataView AiInsightHost（AuthenticatedShell）
 | `artifacts/ChartIntentAdapter` | ChartIntent → 内置插件 Panel + version layouts |
 | `migrations/1730000000020-*` | `ai_provider_connection` 等表 |
 
+规划目录：
+
+| 路径 | 职责 |
+|------|------|
+| `tools/` | 首方 BI Tool Registry；每次调用重做权益、Casbin 和数据策略 |
+| `mcp/` | 管理员可选启用的 MCP adapter；不复制领域逻辑 |
+| `rag/` | Semantic / Document retrieval、引用和 ACL filter |
+
 ### API
 
 | 方法 | 路径 | 说明 |
@@ -56,12 +68,16 @@ DataView AiInsightHost（AuthenticatedShell）
 | GET/PUT | `/api/ai/settings/:spaceUid` | 读公开配置 / 写 Provider |
 | POST | `/api/ai/settings/:spaceUid/test` | 连通测试（可用 ephemeral secret） |
 
+规划 API：`POST /api/ai/chat/stream`、会话 fork、dataset drafts 和可选 `/mcp`。
+
 ### 安全红线
 
 - QueryService DataPolicy 必须传真实 `userId` / `orgUid`（见 `QueryActor`）。
 - LLM 禁止原始 SQL、HTML、数据源密码、编造关键数字。
 - 图表只走数据集 → QueryService builder 模式。
+- 数据源 schema / 样本只用于生成数据集草案；确认创建后才能查询和配图。
 - 不自动删除资产；创建走既有 Dashboard/Panel 服务。
+- DataView 不持有数据源凭据，也不提供 MCP server。
 
 ### 环境变量
 
@@ -83,6 +99,9 @@ LUMINARY_AI_BASE_URL=  # 可选；设置后走中央 AI Platform
 | `router/index.tsx` AuthenticatedShell | 挂载 Host；embed/share/render 不挂 |
 
 i18n 键：`ai.*`、`space.settings.ai*`（`common.json`）。
+
+规划中的 Agent Workspace 包含会话历史、new/fork、上下文 chips、SSE、工具过程、
+Evidence 和写操作确认卡。服务端会话是历史权威，前端不复制消息伪造分支。
 
 ## 5. ChartIntent → 插件
 
@@ -110,6 +129,10 @@ pnpm exec rstest src/modules/ai
 | 文档 | 说明 |
 |------|------|
 | MetaRepo `spec/development/ai-insights-overview.md` | 索引 |
+| MetaRepo `spec/contracts/ai-agent-tools.md` | Agent 工具与权限 |
+| MetaRepo `spec/contracts/ai-dataset-authoring.md` | 数据源到数据集 |
+| MetaRepo `spec/contracts/ai-conversation.md` | 会话、fork 与 SSE |
+| MetaRepo `spec/contracts/ai-rag.md` | Semantic / Document RAG |
 | DataTalk `spec/development/ai-domain.md` | 后端规格 |
 | DataView `spec/development/ai-workspace.md` | 前端规格 |
 | LuminaryWorks `spec/ai-platform.md` | 六产品网关边界 |
