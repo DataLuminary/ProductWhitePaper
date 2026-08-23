@@ -122,7 +122,7 @@ pnpm exec rstest src/modules/ai
 # DataView：登录空间 → 右下角 AI → 空间设置配置 DeepSeek / 智谱兼容接口
 ```
 
-提供商连通可先用空间设置「测试连通」；未配模型时编排器仍可走启发式意图 + QueryService。
+提供商连通可先用空间设置「测试连通」。未配置已启用模型时，前端直接跳转模型设置，后端返回 `MODEL_REQUIRED`，不再启发式问数。模型调用失败返回 `MODEL_UNREACHABLE`，提示改选模型。
 
 ## 7. 相关文档
 
