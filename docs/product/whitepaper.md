@@ -76,7 +76,7 @@
 ## 4. 产品能力主线
 
 1. **数据接入** — 库表、文件、API、遥测与事件  
-2. **数据集与指标治理** — 可复用语义层  
+2. **数据集与指标治理** — 创建即自动发布语义层，默认托管分析存储  
 3. **图表与仪表盘** — 拖拽 / AI 配图 / 布局与交互引擎  
 4. **分享与协作** — 嵌入、订阅推送、审核与审计  
 5. **权限与空间** — Casbin 资源 ACL + 组织协作  
@@ -100,6 +100,8 @@ DataLuminary 可单独售卖，也可与 SyncroBrain、VistaCast、VistaRemote�
 |------|------|
 | [统一身份与企业 SSO](./unified-identity.md) | 产品 / 售前 / 私有化交付 |
 | [完整产品能力](./features.md) | 产品 / 售前 |
+| [数据集与分析存储](./dataset-modeling.md) | 产品 / 售前 / 交付 |
+| [数据集零配置供给](../develop/dataset-provisioning.md) | 研发 |
 | [产品愿景](./vision.md) | 战略 / 投资 |
 | [权限架构](../permission/architecture.md) | 架构 / 交付 |
 | [LuminaryWorks 统一登录](https://github.com/LuminaryWorks/docs/blob/main/docs/develop/unified-login.md) | 研发 |

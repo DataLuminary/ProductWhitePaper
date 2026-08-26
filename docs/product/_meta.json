@@ -21,6 +21,11 @@
   },
   {
     "type": "file",
+    "name": "dataset-modeling",
+    "label": "数据集与分析存储"
+  },
+  {
+    "type": "file",
     "name": "ai-insights",
     "label": "AI 洞察"
   },

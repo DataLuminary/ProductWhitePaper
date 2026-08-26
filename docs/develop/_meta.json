@@ -25,6 +25,11 @@
     "label": "AI 洞察设计与实现"
   },
   {
+    "type": "file",
+    "name": "dataset-provisioning",
+    "label": "数据集零配置供给"
+  },
+  {
     "type": "divider"
   },
   {

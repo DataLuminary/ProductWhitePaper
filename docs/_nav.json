@@ -20,6 +20,10 @@
         "link": "/product/features"
       },
       {
+        "text": "数据集与分析存储",
+        "link": "/product/dataset-modeling"
+      },
+      {
         "text": "AI 洞察",
         "link": "/product/ai-insights"
       },
@@ -178,6 +182,10 @@
       {
         "text": "AI 洞察设计与实现",
         "link": "/develop/ai-insights"
+      },
+      {
+        "text": "数据集零配置供给",
+        "link": "/develop/dataset-provisioning"
       },
       {
         "text": "私有化权限对接",

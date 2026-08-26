@@ -23,7 +23,7 @@ DataView AiInsightHost（AuthenticatedShell）
     → DataTalk AiModule / AiOrchestrator
       → Entitlement + Casbin（每次工具）
       → ToolRegistry
-        → Datasource schema → Dataset draft / create
+        → Datasource schema → Dataset draft / DatasetProvisioningService（auto_publish + managed）
         → Semantic / AnalysisEngine / QueryService
         → Semantic / Document RAG（同库 pgvector）
       → ChartIntentAdapter → DashboardService / PanelService / VersionService
@@ -75,8 +75,8 @@ DataView AiInsightHost（AuthenticatedShell）
 
 - QueryService DataPolicy 必须传真实 `userId` / `orgUid`（见 `QueryActor`）。
 - LLM 禁止原始 SQL、HTML、数据源密码、编造关键数字。
-- 图表只走数据集 → QueryService builder 模式。
-- 数据源 schema / 样本只用于生成数据集草案；确认创建后才能查询和配图。
+- 图表只走数据集 → 已发布 SemanticModel → Semantic Query（无图表 SQL / rawName fallback）。
+- 数据源 schema / 样本只用于生成数据集草案；确认创建后走 `DatasetProvisioningService`，才能查询和配图。
 - 不自动删除资产；创建走既有 Dashboard/Panel 服务。
 - DataView 不持有数据源凭据，也不提供 MCP server。
 
@@ -124,7 +124,18 @@ pnpm exec rstest src/modules/ai
 
 提供商连通可先用空间设置「测试连通」。未配置已启用模型时，前端直接跳转模型设置，后端返回 `MODEL_REQUIRED`，不再启发式问数。模型调用失败返回 `MODEL_UNREACHABLE`，提示改选模型。
 
-当前限制：向量在同一 PostgreSQL；MCP 限流与日程 worker 都在 DataTalk 进程内。
+当前限制：向量在同一 PostgreSQL（pgvector，**不是 JSONB**）；MCP 限流与日程 worker 都在 DataTalk 进程内。
+
+### SaaS 与私有化
+
+| | SaaS 租户 | 私有化 |
+|--|-----------|--------|
+| RAG 语料 | 该租户 DataTalk 库，按空间隔离 | 客户自有 PG + pgvector |
+| 向量集群 | 不需要 | 不需要（首期） |
+| 模型 | 空间 BYOK 或后续托管额度 | 空间 BYOK / 内网兼容接口 |
+| MCP | 指向该租户 DataTalk `/api/ai/mcp/*` | 内网同一路径；`AI_MCP_ENABLED` |
+
+产品入口与用户说明见 [AI 洞察](../product/ai-insights.md)。
 
 ## 7. 相关文档
 
