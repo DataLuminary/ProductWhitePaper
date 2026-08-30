@@ -11,12 +11,13 @@
 把「建数据集 → 才能配图」收成一次创建：
 
 - 所有创建入口（原始批量 `POST /dataset`、联表 `POST /dataset/linked`、AI `create_dataset_from_draft`）走同一个 `DatasetProvisioningService`
-- 默认 `semantic=auto_publish` + `storageTarget=managed_analytical` + `syncMode=full`
+- 默认 `semantic=auto_publish` + `storageTarget=direct` + `syncMode=full`
+- 仅当本部署 `MANAGED_DORIS_ENABLED=true`（本地 `pnpm bootstrap`）时，默认才改为 `managed_analytical`
 - 事务内落库数据集与语义模型 v1；Doris / 同步是可重试的外部副作用
 - 活动路由保持 Direct，直到首次 FULL **真正完成** 后原子切换 Analytical
 - 托管凭据只存在服务端环境变量，不进入普通数据集 UI
 
-**已废止**：创建向导不出现存储/语义选择；默认 Direct 且创建后不自动发布语义模型；把 ClickHouse 当作默认加速底座。
+**已废止**：创建向导不出现存储/语义选择；默认 Direct 且创建后不自动发布语义模型；把 ClickHouse 当作默认加速底座；把托管 Doris 当作 SaaS 默认供给。
 
 ## 2. 架构
 
@@ -49,7 +50,7 @@ QueryService / Semantic Query
 | 字段 | 默认 | 取值 |
 |------|------|------|
 | `semantic` | `auto_publish` | `auto_publish` \| `none` |
-| `storageTarget` | `managed_analytical` | `managed_analytical` \| `direct` \| `external_analytical` |
+| `storageTarget` | `direct`（仅 `MANAGED_DORIS_ENABLED=true` 时为 `managed_analytical`） | `managed_analytical` \| `direct` \| `external_analytical` |
 | `syncMode` | `full` | `full` \| `incremental` \| `cdc`（linked 非 Direct 时强制 `full`） |
 
 响应每条数据集带 `provisioningStatus`、`provisioningTaskUid`、`provisioningErrorCode`。
@@ -88,7 +89,9 @@ QueryService / Semantic Query
 
 公开引擎 API 不得 mint managed 实例；`toPublic` 对普通数据集界面省略 host 与 credential fingerprint。外部引擎路径保留。
 
-本地验证栈：`DataTalk/docker/docker-compose.analytical.yml`（Doris FE/BE）。集成测试：`ANALYTICAL_IT=1`（可选 `ANALYTICAL_IT_SOURCE_MARK`）。
+本地验证栈：`DataTalk/docker/docker-compose.analytical.yml`（Doris FE/BE）。`pnpm bootstrap` 测完整分析路径；私有化 `pnpm bootstrap -- --skip-analytical`。集成测试：`ANALYTICAL_IT=1`（可选 `ANALYTICAL_IT_SOURCE_MARK`）。
+
+DataLuminary 自营 SaaS 保持 `MANAGED_DORIS_ENABLED=false`：用户自备分析库 + 平台同步；前端托管选项 Tooltip「请联系管理员开通」。
 
 ## 6. 同步与激活
 
@@ -105,14 +108,14 @@ QueryService / Semantic Query
 - 能力码 `analytical.storage`（`FEATURE.ANALYTICAL_STORAGE`）
 - 用量继续 `storage.bytes`
 - `ENTITLEMENT_MODE=off` 时本地放行
-- 套餐拒绝或 `MANAGED_DORIS_ENABLED=false`：创建仍成功，语义 v1 已发布，查询 Direct，`provisioningStatus=failed`，可重试或用户改存储
+- 套餐拒绝或 `MANAGED_DORIS_ENABLED=false`：创建仍成功，语义 v1 已发布，查询 Direct；托管选项禁用并提示联系管理员；用户可改连自备分析库
 
 ## 8. 前端要点
 
-- 原始向导：字段步骤与完成步骤之间为 `DatasetCapabilitiesStep`。
+- 原始向导：字段步骤与完成步骤之间为 `DatasetCapabilitiesStep`。默认 Direct；托管未开通时 Radio 禁用 + Tooltip「请联系管理员开通」。
 - 联表向导：同样默认；同步只暴露 FULL。
 - 完成页：语义就绪 / 供给中 / 已切换 / 失败可重试；「立即配图」写入 session 预选刚创建的数据集。
-- `AnalyticalStorageTab`：managed 只渲染状态、用量、同步、重试、切换；凭据仅 external。
+- `AnalyticalStorageTab`：托管未开通时禁用并 Tooltip；外部引擎才收集凭据；同步走 DataLuminary FULL/INCREMENTAL/CDC。
 - `SemanticModelTab`：结构化维度/指标编辑，保留多指标与高级公式，不再用冒号分隔 TextArea。
 - locale：`public/locales/{en,zh}/dataset.json`，禁止 `t()` 的 `defaultValue`。
 
