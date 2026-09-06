@@ -8,9 +8,9 @@
 |----------|----------------|
 | **SaaS / 标准私有化包** | **LuminaryWorks 统一账号**（一次注册，生态互通） |
 | **企业采购私有化** | **企业账号 SSO**（AD / 飞书 / 钉钉 / 企微 / Azure AD 等） |
-| 本地开发 | 统一登录为主；可选折叠「本地开发账号」 |
+| 本地开发 | 同一套统一登录（`pnpm id:up`）。**不要**用产品内本地用户名密码 |
 
-DataView 登录页主按钮为「使用统一账号登录」；本地用户名密码不是生产默认路径。
+DataView 登录页只有统一账号；本地用户名密码不是本产品路径。Auth Gateway 为可选组件。
 
 ## 为什么重要
 
@@ -41,7 +41,7 @@ DataView 登录页主按钮为「使用统一账号登录」；本地用户名�
 ## 私有化检查清单
 
 - [ ] Identity / 企业 IdP 可达，OIDC discovery 正常  
-- [ ] DataView：`VITE_IDP_*` 或 `VITE_AUTH_GATEWAY_URL`；`VITE_ALLOW_LOCAL_LOGIN=false`  
+- [ ] DataView：`VITE_IDP_ISSUER` + `VITE_IDP_CLIENT_ID`（bootstrap 可写入）；Auth Gateway 可选；`VITE_ALLOW_LOCAL_LOGIN=false`  
 - [ ] DataTalk：`IDP_ISSUER` / `IDP_AUDIENCE`；`AUTH_MODE=sso`  
 - [ ] 回调 URI 与 IdP 应用登记一致（默认 `http(s)://<host>/auth/callback`）  
 - [ ] 若需企业 SSO：在 IdP 配置 Connector，产品侧无需改代码  
